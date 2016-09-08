@@ -20,8 +20,9 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'mattn/emmet-vim/'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'elixir-lang/vim-elixir'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -45,6 +46,9 @@ syntax on
 colorscheme Monokai-Refined
 " set backspace to work like most apps
 set backspace=2
+
+" Use system clipboard
+set clipboard=unnamed
 
 " enhance cli completion
 set wildmenu
@@ -115,6 +119,20 @@ set nofoldenable
 set foldlevel=1
 
 ""
+" White space
+""
+" Highlight trailing whitespace
+match ErrorMsg '\s\+$'
+" Delete whitespace
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+" Remove on save
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+
+""
 " PLUGIN SETTINGS
 ""
 
@@ -128,10 +146,16 @@ imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " Nerd Tree
 " Open Automatically with vim
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
 
 " Ctrl+n opens nerd tree
 map <C-n> :NERDTreeToggle<CR>
+
+" Ctags
+map <Leader>rt :!ctags --tag-relative --extra=+f --Rf.git/tags --exclude=.git,pkg -languages=-javascript,sql<CR><CR>
+
+set tags+=.git/tags
+set tags +=tags;/
 
 
