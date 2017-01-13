@@ -24,6 +24,7 @@ alias cd_rails='cd ~/Documents/rails-projects/'
 alias start_postgres='postgres -D /usr/local/var/postgres'
 alias start_redis='redis-server /usr/local/etc/redis.conf'
 alias foreman_logs='tail -f log/development.log'
+alias start_kafka='zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties; kafka-server-start /usr/local/etc/kafka/server.properties'
 
 # Rails
 alias remigrate="be rake db:rollback & be rake db:migrate"

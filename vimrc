@@ -23,6 +23,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'kchmck/vim-coffee-script'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
