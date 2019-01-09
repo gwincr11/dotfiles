@@ -1,28 +1,26 @@
-# export PATH="$HOME/.bin:$PATH"
-eval "$(pyenv init -)"
-# export PATH="$HOME/.pyenv/shims:${PATH}"
-# recommended by brew doctor
-# export PATH="/usr/local/bin:$PATH"\n
-# export PATH="$HOME/.rbenv/bin:$PATH"
+export ZSH=/Users/gwincr11/.oh-my-zsh
 eval "$(rbenv init - --no-rehash)"
-# export PATH="/usr/local/bin:$PATH"
+eval "$(nodenv init -)"
+export GOPATH=$HOME/go
 
-export NVM_DIR="/Users/corygwin/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+ZSH_THEME="Honukai"
+plugins=(git bundler osx rake ruby vi-mode)
+source $ZSH/oh-my-zsh.sh
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias ls="ls -FGh"
+alias du="du -cksh"
+alias df="df -h"
+# Use modern regexps for sed, i.e. "(one|two)", not "\(one\|two\)"
+alias sed="sed -E"
+
+# ssh-agent
+if !(ssh-add -E md5 -l)
+then
+  ssh-agent >> /dev/null 2>&1
+  ssh-add ~/.ssh/id_rsa >> /dev/null 2>&1
+fi
+
+#autoload -U add-zsh-hook
 export PATH="/usr/local/sbin:$PATH"
-
-# ZSH_THEME="Honukai"
-ZSH_THEME="robbyrussell"

@@ -1,42 +1,68 @@
-" Bundle Scripts-----------------------------
-if has('vim_starting')
+runtime macros/matchit.vim
+"dein Scripts-----------------------------
+if &compatible
   set nocompatible               " Be iMproved
-
-  " Required:
-	set runtimepath+=/Users/corygwin/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/corygwin/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'kchmck/vim-coffee-script'
-
-" You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+set runtimepath+=/Users/gwincr11/.config/nvim/plugin/repos/github.com/Shougo/dein.vim
 
 " Required:
-call neobundle#end()
+if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
+  call dein#begin('/Users/gwincr11/.config/nvim/plugin')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/gwincr11/.config/nvim/plugin/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+
+  " You can specify revision/branch/tag.
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+  " Plugins
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('flazz/vim-colorschemes')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('mattn/emmet-vim')
+  call dein#add('elixir-lang/vim-elixir')
+  call dein#add('kchmck/vim-coffee-script')
+  call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('ngmy/vim-rubocop')
+  call dein#add('jaromero/vim-monokai-refined')
+  call dein#add('crusoexia/vim-dracula')
+  call dein#add('tpope/vim-rails')
+  call dein#add('vim-ruby/vim-ruby')
+  call dein#add('tpope/vim-bundler')
+  call dein#add('tpope/vim-rake')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('w0rp/ale')
+  call dein#add('janko-m/vim-test')
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 " Required:
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
+" NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
 " GENERAL
@@ -44,7 +70,9 @@ NeoBundleCheck
 
 " enable syntax highlighting
 syntax on
-colorscheme Monokai-Refined
+set t_Co=256
+" colorscheme Monokai-Refined
+colorscheme dracula
 " set backspace to work like most apps
 set backspace=2
 
@@ -103,6 +131,9 @@ set shiftwidth=2
 set smarttab
 set softtabstop=2
 
+" disable swapfile
+set noswapfile
+
 ""
 " FOLDING
 ""
@@ -159,4 +190,58 @@ map <Leader>rt :!ctags --tag-relative --extra=+f --Rf.git/tags --exclude=.git,pk
 set tags+=.git/tags
 set tags +=tags;/
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+function! HighlightSearch()
+  if &hls
+    return 'H'
+  else
+    return ''
+  endif
+endfunction
+
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%{ALEGetStatusLine()}                     "Ale lint status
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
+set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
+set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
+
+hi User1 guifg=#ffdad8  guibg=#880c0e
+hi User2 guifg=#000000  guibg=#F4905C
+hi User3 guifg=#292b00  guibg=#f4f597
+hi User4 guifg=#112605  guibg=#aefe7B
+hi User5 guifg=#051d00  guibg=#7dcc7d
+hi User7 guifg=#ffffff  guibg=#880c0e gui=bold
+hi User8 guifg=#ffffff  guibg=#5b7fbb
+hi User9 guifg=#ffffff  guibg=#810085
+hi User0 guifg=#ffffff  guibg=#094afe
+
+" Easier page navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
