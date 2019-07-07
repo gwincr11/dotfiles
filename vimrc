@@ -32,13 +32,12 @@ if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
   call dein#add('kchmck/vim-coffee-script')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('ngmy/vim-rubocop')
-  call dein#add('jaromero/vim-monokai-refined')
+  " call dein#add('jaromero/vim-monokai-refined')
   call dein#add('crusoexia/vim-dracula')
   call dein#add('tpope/vim-rails')
   call dein#add('vim-ruby/vim-ruby')
   call dein#add('tpope/vim-bundler')
   call dein#add('tpope/vim-rake')
-  call dein#add('tpope/vim-fugitive')
   call dein#add('w0rp/ale')
   call dein#add('janko-m/vim-test')
   " Required:
@@ -57,8 +56,6 @@ endif
 
 "End dein Scripts-------------------------
 
-" Required:
-filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
@@ -149,6 +146,9 @@ set nofoldenable
 
 " set fold level to 1
 set foldlevel=1
+
+" Set higher redraw time for large files
+set redrawtime=10000
 
 ""
 " White space

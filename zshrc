@@ -1,11 +1,15 @@
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE=false
 export ZSH=/Users/gwincr11/.oh-my-zsh
-eval "$(rbenv init - --no-rehash)"
-eval "$(nodenv init -)"
-export GOPATH=$HOME/go
-
 ZSH_THEME="Honukai"
 plugins=(git bundler osx rake ruby vi-mode)
 source $ZSH/oh-my-zsh.sh
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init --no-rehash)"
+eval "$(nodenv init -)"
+export GOPATH=$HOME/go
+
 
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -16,7 +20,8 @@ alias df="df -h"
 alias sed="sed -E"
 
 # ssh-agent
-if !(ssh-add -E md5 -l)
+agents=(ssh-add -E md5 -l)
+if [ -z agents ]
 then
   ssh-agent >> /dev/null 2>&1
   ssh-add ~/.ssh/id_rsa >> /dev/null 2>&1
