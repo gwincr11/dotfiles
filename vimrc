@@ -40,6 +40,7 @@ if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
   call dein#add('tpope/vim-rake')
   call dein#add('w0rp/ale')
   call dein#add('janko-m/vim-test')
+  call dein#add('fatih/vim-go')
   " Required:
   call dein#end()
   call dein#save_state()

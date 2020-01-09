@@ -6,7 +6,7 @@ plugins=(git bundler osx rake ruby vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init --no-rehash)"
+eval "$(rbenv init -)"
 eval "$(nodenv init -)"
 export GOPATH=$HOME/go
 
@@ -29,3 +29,4 @@ fi
 
 #autoload -U add-zsh-hook
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
