@@ -23,7 +23,7 @@
 [rebase]
   autosquash = true
 [core]
-	excludesfile = /Users/corygwin/.gitignore
+	excludesfile = /Users/gwincr11/.gitignore
 	editor = vim
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f

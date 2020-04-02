@@ -23,14 +23,14 @@ if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
   " Plugins
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('ctrlpvim/ctrlp.vim')
+  " call dein#add('tpope/vim-fugitive')
+  " call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('flazz/vim-colorschemes')
   call dein#add('scrooloose/nerdtree')
   call dein#add('mattn/emmet-vim')
-  call dein#add('elixir-lang/vim-elixir')
+  " call dein#add('elixir-lang/vim-elixir')
   call dein#add('kchmck/vim-coffee-script')
-  call dein#add('terryma/vim-multiple-cursors')
+  " call dein#add('terryma/vim-multiple-cursors')
   call dein#add('ngmy/vim-rubocop')
   " call dein#add('jaromero/vim-monokai-refined')
   call dein#add('crusoexia/vim-dracula')
@@ -39,8 +39,11 @@ if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
   call dein#add('tpope/vim-bundler')
   call dein#add('tpope/vim-rake')
   call dein#add('w0rp/ale')
-  call dein#add('janko-m/vim-test')
+  " call dein#add('janko-m/vim-test')
   call dein#add('fatih/vim-go')
+  call dein#add('dgraham/vim-eslint')
+  call dein#add('flowtype/vim-flow')
+  call dein#add('prettier/vim-prettier')
   " Required:
   call dein#end()
   call dein#save_state()
@@ -246,3 +249,13 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" If you are using the Asyncronous Linting Engine you might want to add the following snippet to your config so that ALE picks is aware of the tools we use when writing javascript at GitHub.
+let g:ale_linters = {
+\   'javascript': ['eslint', 'flow', 'prettier', 'prettier-eslint'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['eslint', 'prettier', 'prettier-eslint'],
+\}
+
+let g:ale_fix_on_save = 1
