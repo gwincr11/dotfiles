@@ -6,6 +6,7 @@ endif
 
 " Required:
 set runtimepath+=/Users/gwincr11/.config/nvim/plugin/repos/github.com/Shougo/dein.vim
+set runtimepath+=/usr/local/Cellar/vim/8.2.0500_1/share/vim/vim82/
 
 " Required:
 if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
@@ -44,6 +45,7 @@ if dein#load_state('/Users/gwincr11/.config/nvim/plugin')
   call dein#add('dgraham/vim-eslint')
   call dein#add('flowtype/vim-flow')
   call dein#add('prettier/vim-prettier')
+  call dein#add('junegunn/fzf')
   " Required:
   call dein#end()
   call dein#save_state()
@@ -193,6 +195,10 @@ map <Leader>rt :!ctags --tag-relative --extra=+f --Rf.git/tags --exclude=.git,pk
 
 set tags+=.git/tags
 set tags +=tags;/
+
+" CTRLP set to fuzzy finder
+set rtp+=/usr/local/opt/fzf
+nmap <C-P> :FZF<CR>
 
 " The Silver Searcher
 if executable('ag')

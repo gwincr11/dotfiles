@@ -48,10 +48,17 @@ dockercleanup(){
   docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
+dockerlogin(){
+  cat ~/.docker/github_token.txt | docker login https://docker.pkg.github.com -u gwincr11 --password-stdin
+  cat ~/.docker/github_token.txt | docker login https://containers.pkg.github.com -u gwincr11 --password-stdin
+  #cat ~/.docker/github_token.txt | docker login https://packages.service.github.net -u gwincr11 --password-stdin
+
+}
+
 alias git_log_diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 export PATH="/usr/local/sbin:$PATH"
 #export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="/Users/gwincr11/go/bin:$PATH"
-export PATH="/usr/local/anaconda3/bin:$PATH"
+export PATH="bin:$PATH"
 stty sane
