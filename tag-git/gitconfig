@@ -30,7 +30,6 @@
 	clean = git-lfs clean -- %f
 [user]
 	name = Cory Gwin
-	email = gwincr11@github.com
 [core]
 	editor = vim
 [commit]
