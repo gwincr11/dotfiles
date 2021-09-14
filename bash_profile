@@ -1,6 +1,8 @@
 alias preach_cow='fortune | cowsay | lolcat'
 #preach_cow
-
+if [ -f ~/.dotfiles/codespaces ]; then
+  source ~/.dotfiles/codespaces
+fi
 alias preach_parrot='fortune | parrotsay '
 preach_parrot
 
@@ -51,6 +53,7 @@ dockercleanup(){
 dockerlogin(){
   cat ~/.docker/github_token.txt | docker login https://docker.pkg.github.com -u gwincr11 --password-stdin
   cat ~/.docker/github_token.txt | docker login https://containers.pkg.github.com -u gwincr11 --password-stdin
+  cat ~/.docker/github_token.txt | docker login https://ghcr.io -u gwincr11 --password-stdin
   #cat ~/.docker/github_token.txt | docker login https://packages.service.github.net -u gwincr11 --password-stdin
 
 }
