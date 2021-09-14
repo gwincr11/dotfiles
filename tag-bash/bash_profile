@@ -1,10 +1,6 @@
-alias preach_cow='fortune | cowsay | lolcat'
-#preach_cow
 if [ -f ~/.dotfiles/codespaces ]; then
   source ~/.dotfiles/codespaces
 fi
-alias preach_parrot='fortune | parrotsay '
-preach_parrot
 
 # Heroku
 export HEROKU_ORGANIZATION=github-enterprise
@@ -58,10 +54,28 @@ dockerlogin(){
 
 }
 
-alias git_log_diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 export PATH="/usr/local/sbin:$PATH"
 #export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="/Users/gwincr11/go/bin:$PATH"
 export PATH="bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
 stty sane
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

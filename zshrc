@@ -11,13 +11,20 @@ eval "$(nodenv init -)"
 export GOPATH=$HOME/go
 
 
-alias cp="cp -iv"
-alias mv="mv -iv"
+alias cp="cp -v"
+alias mv="mv -v"
 alias ls="ls -FGh"
 alias du="du -cksh"
 alias df="df -h"
 # Use modern regexps for sed, i.e. "(one|two)", not "\(one\|two\)"
 alias sed="sed -E"
+alias mkdir='mkdir -p'
+alias ll='ls -al'
+alias ln='ln -v'
+alias git_log_diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+fortune | parrotsay
+
 
 # ssh-agent
 agents=(ssh-add -E md5 -l)
@@ -28,21 +35,5 @@ then
 fi
 
 #autoload -U add-zsh-hook
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+stty sane
