@@ -23,9 +23,6 @@ alias ll='ls -al'
 alias ln='ln -v'
 alias git_log_diff="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
-fortune | parrotsay
-
-
 # ssh-agent
 agents=(ssh-add -E md5 -l)
 if [ -z agents ]
