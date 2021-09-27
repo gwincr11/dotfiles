@@ -30,7 +30,5 @@
 	clean = git-lfs clean -- %f
 [user]
 	name = Cory Gwin
-[core]
-	editor = vim
 [commit]
   template = ~/.committemplate
