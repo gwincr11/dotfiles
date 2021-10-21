@@ -22,8 +22,6 @@
   autosquash = true
 [pull]
   rebase = false
-[core]
-	editor = vim
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	required = true
